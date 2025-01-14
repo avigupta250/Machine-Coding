@@ -75,7 +75,7 @@ const Diagonal = () => {
             <div
               key={`${rowIndex}-${colIndex}`}
               onClick={() => handleClick(rowIndex, colIndex)}
-              className={`h-[50px] w-[50px] border-[1px] cursor-pointer ${
+              className={`h-[50px] w-[50px] border-[1px] border-black cursor-pointer ${
                 clickedCell?.row === rowIndex && clickedCell?.col === colIndex
                   ? "bg-yellow-400" 
                   : grid[rowIndex][colIndex] === ""
