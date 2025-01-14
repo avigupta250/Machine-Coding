@@ -10,7 +10,7 @@ const Diagonal = () => {
 
   const [grid, setGrid] = useState(initialGrid);
 
-  const handleClick = (row:number, col:number) => {
+  const handleClick = (row, col) => {
     
     const newGrid = grid.map((r) => [...r]);
 
