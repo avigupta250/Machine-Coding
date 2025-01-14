@@ -87,7 +87,7 @@ const Diagonal = () => {
 
       <button
         onClick={handleReset}
-        className="p-2 px-3 mt-6 bg-red-500 text-white"
+        className="p-2 px-3 mt-6 bg-red-500 rounded-md text-white"
       >
         Reset
       </button>
