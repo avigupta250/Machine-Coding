@@ -1,17 +1,17 @@
 import { useState } from "react";
 
 const Diagonal = () => {
-  let rowSize = 21;
-  let colSize = 21;
+  let rowSize = 9;
+  let colSize = 9;
 
   const initialGrid = Array.from({ length: rowSize }, () =>
     new Array(colSize).fill("")
   );
 
   const [grid, setGrid] = useState(initialGrid);
+  const [clickedCell, setClickedCell] = useState(null);
 
   const handleClick = (row, col) => {
-    
     const newGrid = grid.map((r) => [...r]);
 
     // Upwards right
@@ -22,7 +22,6 @@ const Diagonal = () => {
       r--;
       c++;
     }
-    console.log("Upward right complete");
 
     // Upwards left
     r = row;
@@ -32,7 +31,6 @@ const Diagonal = () => {
       r--;
       c--;
     }
-    console.log("Upward left complete");
 
     // Downwards left
     r = row;
@@ -42,7 +40,6 @@ const Diagonal = () => {
       r++;
       c--;
     }
-    console.log("Downward left complete");
 
     // Downwards right
     r = row;
@@ -52,13 +49,14 @@ const Diagonal = () => {
       r++;
       c++;
     }
-    console.log("Downward right complete");
 
     setGrid(newGrid);
+    setClickedCell({ row, col }); 
   };
 
   const handleReset = () => {
     setGrid(initialGrid);
+    setClickedCell(null);
   };
 
   return (
@@ -77,9 +75,13 @@ const Diagonal = () => {
             <div
               key={`${rowIndex}-${colIndex}`}
               onClick={() => handleClick(rowIndex, colIndex)}
-              className={`${
-                grid[rowIndex][colIndex] === "" ? "bg-white" : "bg-red-600"
-              } h-[25px] w-[25px] border-[1px] hover:bg-red-400 cursor-pointer`}
+              className={`h-[50px] w-[50px] border-[1px] cursor-pointer ${
+                clickedCell?.row === rowIndex && clickedCell?.col === colIndex
+                  ? "bg-yellow-400" 
+                  : grid[rowIndex][colIndex] === ""
+                  ? "bg-white"
+                  : "bg-red-600"
+              } `}
             ></div>
           ))
         )}
